@@ -8,7 +8,7 @@
 }
 
 .research-intro {
-  max-width: 850px;
+  max-width: 1000px;
   padding: 78px 0 80px;
 }
 
@@ -22,7 +22,7 @@
 }
 
 .research-intro h1 {
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 0 28px;
   font-size: clamp(36px, 5vw, 60px);
   line-height: 1.12;
@@ -30,7 +30,7 @@
 }
 
 .research-lead {
-  max-width: 750px;
+  max-width: 1000px;
   font-size: clamp(17px, 1.8vw, 20px);
   line-height: 1.75;
   color: var(--muted, #666);
@@ -130,7 +130,7 @@
 }
 
 .research-approach>p:not(.research-kicker) {
-  max-width: 780px;
+  max-width: 1000px;
   color: var(--muted, #666);
   font-size: 17px;
   line-height: 1.8;
@@ -262,7 +262,7 @@
 .research-approach>p {
   text-align: justify;
   text-justify: inter-word;
-  hyphens: auto;
+  hyphens: none;
 }
 
 
@@ -283,7 +283,7 @@
   line-height: 1.55;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 750px) {
 
   .research-direction,
   .research-direction-reverse {
@@ -315,7 +315,7 @@
   text-align: center;
 }
 
-@media (max-width: 800px) {
+@media (max-width: 750px) {
   .approach-figure {
     margin: 30px auto;
   }
