@@ -235,7 +235,7 @@
 /* Research figures */
 .research-figure {
   width: 100%;
-  max-width: 250px;
+  max-width: 300px;
   margin: 0 auto;
   min-width: 0;
 }
@@ -297,7 +297,7 @@
 /* How We Work - Research framework figure */
 .approach-figure {
   width: 100%;
-  max-width: 850px;
+  max-width: 500px;
   margin: 45px auto;
 }
 
