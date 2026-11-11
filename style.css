@@ -467,3 +467,81 @@ footer {
         hyphens: none;
     }
 }
+
+
+/* Position cards */
+
+.positions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.position-card {
+    display: flex;
+    flex-direction: column;
+    padding: 28px;
+    border: 1px solid var(--line, #e5e5e5);
+    border-radius: 12px;
+    background: #fff;
+    transition: border-color 0.2s ease;
+}
+
+.position-card:hover {
+    border-color: #aaa;
+}
+
+.position-card h3 {
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 14px;
+}
+
+.position-card>p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted, #666);
+    margin: 0 0 24px;
+}
+
+.position-apply {
+    margin-top: auto;
+    padding-top: 18px;
+    border-top: 1px solid var(--line, #e5e5e5);
+}
+
+.position-apply span {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--ink, #242424);
+    margin-bottom: 8px;
+}
+
+.position-apply p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--muted, #666);
+    margin: 0;
+}
+
+.positions-email {
+    margin-top: 28px;
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--muted, #666);
+}
+
+/* Mobile */
+
+@media (max-width: 650px) {
+    .positions-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    .position-card {
+        padding: 24px;
+    }
+}
