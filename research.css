@@ -8,7 +8,7 @@
 }
 
 .research-intro {
-  max-width: 1000px;
+  max-width: 900px;
   padding: 78px 0 80px;
 }
 
@@ -22,15 +22,15 @@
 }
 
 .research-intro h1 {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 0 28px;
-  font-size: clamp(36px, 5vw, 60px);
+  font-size: clamp(36px, 4.5vw, 55px);
   line-height: 1.12;
   letter-spacing: -.04em;
 }
 
 .research-lead {
-  max-width: 1000px;
+  max-width: 900px;
   font-size: clamp(17px, 1.8vw, 20px);
   line-height: 1.75;
   color: var(--muted, #666);
@@ -130,7 +130,7 @@
 }
 
 .research-approach>p:not(.research-kicker) {
-  max-width: 1000px;
+  max-width: 900px;
   color: var(--muted, #666);
   font-size: 17px;
   line-height: 1.8;
