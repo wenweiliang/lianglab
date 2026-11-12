@@ -137,6 +137,28 @@
       journal.textContent = paper.journal || '';
       meta.append(journal,document.createTextNode(' · ' + paper.year));
       article.append(meta);
+      // Optional representative figure: add "image" to a paper in publications.json.
+      // Papers without an image retain the full-width text layout.
+      if (paper.image && typeof paper.image === 'string') {
+        const figure = document.createElement('figure');
+        figure.className = 'pub-figure';
+        const img = document.createElement('img');
+        img.src = paper.image;
+        img.alt = paper.image_alt || ('Representative data figure for ' + paper.title);
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        figure.append(img);
+        if (paper.image_caption) {
+          const caption = document.createElement('figcaption');
+          caption.textContent = paper.image_caption;
+          figure.append(caption);
+        }
+        const text = document.createElement('div');
+        text.className = 'pub-content';
+        while (article.firstChild) text.append(article.firstChild);
+        article.append(text, figure);
+        article.classList.add('has-figure');
+      }
       container.append(article);
     });
     status.remove();

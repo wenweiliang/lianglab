@@ -39,3 +39,25 @@
 
 /* Contribution symbols attached to the appropriate author names */
 .pub-contribution-mark { font-size: 0.72em; vertical-align: super; line-height: 0; margin-left: 1px; color: var(--ink,#242424); }
+
+/* Optional data figures on the right; no image means a full-width entry. */
+.publication.has-figure {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  align-items: center;
+  gap: 30px;
+  padding: 24px 0;
+}
+.pub-content {min-width:0;}
+.pub-figure {margin:0; width:100%;}
+.pub-figure img {display:block; width:100%; height:auto; max-height:175px; object-fit:contain; object-position:center; border-radius:3px;}
+.pub-figure figcaption {margin-top:6px; color:var(--muted,#666); font-size:11px; line-height:1.45;}
+@media (max-width:700px) {
+  .publication.has-figure {grid-template-columns:minmax(0,1fr) 115px; gap:14px; align-items:start;}
+  .pub-figure img {max-height:120px;}
+}
+@media (max-width:440px) {
+  .publication.has-figure {grid-template-columns:1fr;}
+  .pub-figure {max-width:260px;}
+  .pub-figure img {max-height:160px;}
+}
