@@ -1,0 +1,41 @@
+/* Publications-specific styles; shared header, hero and footer come from style.css */
+.pub-section {padding:28px 0 40px; border-top:1px solid var(--line,#e5e5e5);}
+.pub-section h2 {font-size:26px; font-weight:650; margin:8px 0 28px;}
+.pub-year {font-size:17px; margin:30px 0 12px; color:var(--muted,#666); font-weight:650;}
+.publication {padding:17px 0 19px; border-bottom:1px solid var(--line,#e5e5e5);}
+.pub-title {font-size:17px; font-weight:650; line-height:1.45;}
+.pub-title a {color:var(--ink,#242424); text-decoration:none;}
+.pub-title a:hover {text-decoration:underline; text-underline-offset:3px;}
+.pub-authors {font-size:14px; line-height:1.65; margin-top:7px; color:var(--muted,#666);}
+.pub-authors strong {color:var(--ink,#242424); font-weight:700;}
+.pub-meta {font-size:14px; color:var(--muted,#666); margin-top:5px;}
+.pub-note {font-size:12px;}
+.pub-footnote {font-size:12px; color:var(--muted,#666); margin:10px 0 60px;}
+.pub-status {font-size:14px; color:var(--muted,#666); margin:0 0 20px;}
+@media (max-width:750px) {
+  .pub-section h2 {font-size:23px;}
+  .pub-title {font-size:16px;}
+}
+
+/* Author list expansion for papers with more than eight authors */
+.pub-authors-toggle {
+  display: inline-block;
+  margin: 5px 0 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink,#242424);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: #aaa;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+.pub-authors-toggle:hover { text-decoration-color: currentColor; }
+.pub-authors-toggle:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+.pub-note { margin-top: 5px; color: var(--muted,#666); }
+
+/* Contribution symbols attached to the appropriate author names */
+.pub-contribution-mark { font-size: 0.72em; vertical-align: super; line-height: 0; margin-left: 1px; color: var(--ink,#242424); }
