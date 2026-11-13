@@ -1,172 +1,156 @@
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="Explore publications from Wen-Wei Liang and the Liang Laboratory in cancer genomics, functional genomics, and RNA biology.">
-    <title>Publications | Liang Lab</title>
-    <link rel="canonical" href="https://thelianglab.org/publications.html">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="publications.css">
-</head>
-<body>
-    <header>
-        <div class="wrap nav"><a class="brand" href="index.html">LIANG <span>LAB</span></a>
-            <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="research.html">Research</a><a href="people.html">People</a><a href="publications.html" aria-current="page">Publications</a><a href="contact.html">Contact</a></nav>
-        </div>
-    </header>
-    <main class="wrap publications-page">
-        <div class="hero">
-            <h1>Publications</h1>
-        </div>
-        <p id="pub-status" class="pub-status" role="status">Loading publications…</p>
-        <section class="pub-section" aria-label="Publications by year">
-            <div id="publication-list" class="pub-list"></div>
-        </section>
-        <p class="pub-footnote">* and + indicate equal contributions within the respective author groups. Publication titles link to the published articles.</p>
-    </main>
-    <footer>
-        <div class="wrap">© 2026 Liang Laboratory · Baylor College of Medicine / Texas Children's Hospital · Houston, TX</div>
-    </footer>
-<script>
-(async function () {
-  const status = document.getElementById('pub-status');
-  const container = document.getElementById('publication-list');
 
-  // Convert "First Middle Last" to "Last, F. M." while preserving hyphenated initials.
-  // Consortium / working-group names are left untouched.
-  function formatName(name) {
-    name = String(name).trim();
-    if (/\b(consortium|network|working group|research group|initiative|collaboration)\b/i.test(name)) return name;
-    const words = name.split(/\s+/);
-    if (words.length < 2) return name;
-    // Common multiword family names in this bibliography.
-    const familyPrefixes = ['da Veiga Leprevost','Da Veiga Leprevost','Porta-Pardo','Carrot-Zhang', 'Devarakonda'];
-    let surname = words.pop();
-    const particles = new Set(['de','da','del','van','von','der','la','le']);
-    while (words.length > 1 && particles.has(words[words.length-1].toLowerCase())) surname = words.pop() + ' ' + surname;
-    // Explicitly preserve known compound family names.
-    if (/^Leprevost$/i.test(surname) && words.slice(-2).join(' ').toLowerCase() === 'da veiga') surname = words.splice(-2).join(' ') + ' ' + surname;
-    const initials = words.map(part => part.split('-').map(piece => {
-      if (/^[A-Z]$/i.test(piece)) return piece.toUpperCase() + '.';
-      return piece.charAt(0).toUpperCase() + '.';
-    }).join('-')).join(' ');
-    return surname + ', ' + initials;
-  }
-  function isPI(name) { return /^Wen[‐‑–-]Wei Liang$/i.test(String(name).trim()); }
-  function appendAuthor(parent, name, index, equalGroups) {
-    const label = formatName(name);
-    const node = isPI(name) ? document.createElement('strong') : document.createElement('span');
-    node.textContent = label;
-    parent.append(node);
-    for (const symbol of ['*', '+']) {
-      if (Array.isArray(equalGroups[symbol]) && equalGroups[symbol].includes(index)) {
-        const sup = document.createElement('sup');
-        sup.className = 'pub-contribution-mark';
-        sup.textContent = symbol;
-        parent.append(sup);
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description"
+    content="Explore publications from Wen-Wei Liang and the Liang Laboratory in cancer genomics, functional genomics, and RNA biology.">
+  <title>Publications | Liang Lab</title>
+  <link rel="canonical" href="https://thelianglab.org/publications.html">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="publications.css">
+</head>
+
+<body>
+  <header>
+    <div class="wrap nav"><a class="brand" href="index.html">LIANG <span>LAB</span></a>
+      <nav aria-label="Main navigation"><a href="index.html">Home</a><a href="research.html">Research</a><a
+          href="people.html">People</a><a href="publications.html" aria-current="page">Publications</a><a
+          href="contact.html">Contact</a></nav>
+    </div>
+  </header>
+  <main class="wrap publications-page">
+    <div class="hero">
+      <h1>Publications</h1>
+    </div>
+    <p id="pub-status" class="pub-status" role="status">Loading publications…</p>
+    <section class="pub-section" aria-label="Publications by year">
+      <div id="publication-list" class="pub-list"></div>
+    </section>
+    <p class="pub-footnote">* and + indicate equal contributions within the respective author groups. Publication titles
+      link to the published articles.</p>
+  </main>
+  <footer>
+    <div class="wrap">© 2026 Liang Laboratory · Baylor College of Medicine / Texas Children's Hospital · Houston, TX
+    </div>
+  </footer>
+  <script>
+    (async function () {
+      const status = document.getElementById('pub-status');
+      const container = document.getElementById('publication-list');
+
+      // Convert "First Middle Last" to "Last, F. M." while preserving hyphenated initials.
+      // Consortium / working-group names are left untouched.
+      function formatName(name) {
+        name = String(name).trim();
+        if (/\b(consortium|network|working group|research group|initiative|collaboration)\b/i.test(name)) return name;
+        const words = name.split(/\s+/);
+        if (words.length < 2) return name;
+        // Common multiword family names in this bibliography.
+        const familyPrefixes = ['da Veiga Leprevost', 'Da Veiga Leprevost', 'Porta-Pardo', 'Carrot-Zhang', 'Devarakonda'];
+        let surname = words.pop();
+        const particles = new Set(['de', 'da', 'del', 'van', 'von', 'der', 'la', 'le']);
+        while (words.length > 1 && particles.has(words[words.length - 1].toLowerCase())) surname = words.pop() + ' ' + surname;
+        // Explicitly preserve known compound family names.
+        if (/^Leprevost$/i.test(surname) && words.slice(-2).join(' ').toLowerCase() === 'da veiga') surname = words.splice(-2).join(' ') + ' ' + surname;
+        const initials = words.map(part => part.split('-').map(piece => {
+          if (/^[A-Z]$/i.test(piece)) return piece.toUpperCase() + '.';
+          return piece.charAt(0).toUpperCase() + '.';
+        }).join('-')).join(' ');
+        return surname + ', ' + initials;
       }
-    }
-  }
-  try {
-    const response = await fetch('publications.json', {cache:'no-cache'});
-    if (!response.ok) throw new Error('HTTP ' + response.status);
-    const papers = await response.json();
-    if (!Array.isArray(papers)) throw new Error('Invalid publication data');
-    papers.sort((a,b) => Number(b.year) - Number(a.year));
-    let lastYear = null;
-    papers.forEach((paper, paperIndex) => {
-      if (lastYear !== paper.year) {
-        const heading = document.createElement('h2');
-        heading.className = 'pub-year';
-        heading.textContent = paper.year;
-        container.append(heading);
-        lastYear = paper.year;
-      }
-      const article = document.createElement('article');
-      article.className = 'publication';
-      const title = document.createElement('div');
-      title.className = 'pub-title';
-      const link = document.createElement('a');
-      link.href = paper.url || (paper.doi ? 'https://doi.org/' + paper.doi : 'https://scholar.google.com/scholar?q=' + encodeURIComponent(paper.title));
-      link.textContent = paper.title;
-      link.target = '_blank'; link.rel = 'noopener noreferrer';
-      title.append(link);
-      const authors = document.createElement('div');
-      authors.className = 'pub-authors';
-      authors.id = 'pub-authors-' + paperIndex;
-      const names = Array.isArray(paper.authors) ? paper.authors : String(paper.authors || '').split(/,\s*/).filter(Boolean);
-      const groups = paper.equal_contribution || {};
-      const longList = names.length > 8;
-      const limit = 6;
-      function renderAuthors(expanded) {
-        authors.replaceChildren();
-        const indices = (!longList || expanded) ? names.map((_,i)=>i) : names.slice(0,limit).map((_,i)=>i);
-        indices.forEach((i,pos) => {
-          if (pos) authors.append(document.createTextNode(', '));
-          appendAuthor(authors,names[i],i,groups);
-        });
-        if (longList && !expanded) {
-          authors.append(document.createTextNode(', et al.'));
-          const pi = names.findIndex(isPI);
-          if (pi >= limit) {
-            authors.append(document.createTextNode(' · '));
-            appendAuthor(authors,names[pi],pi,groups);
+      function isPI(name) { return /^Wen[‐‑–-]Wei Liang$/i.test(String(name).trim()); }
+      function appendAuthor(parent, name, index, equalGroups) {
+        const label = formatName(name);
+        const node = isPI(name) ? document.createElement('strong') : document.createElement('span');
+        node.textContent = label;
+        parent.append(node);
+        for (const symbol of ['*', '+']) {
+          if (Array.isArray(equalGroups[symbol]) && equalGroups[symbol].includes(index)) {
+            const sup = document.createElement('sup');
+            sup.className = 'pub-contribution-mark';
+            sup.textContent = symbol;
+            parent.append(sup);
           }
         }
       }
-      renderAuthors(false);
-      article.append(title,authors);
-      if (longList) {
-        const toggle = document.createElement('button');
-        toggle.type = 'button'; toggle.className = 'pub-authors-toggle';
-        toggle.textContent = 'Show all authors';
-        toggle.setAttribute('aria-controls',authors.id);
-        toggle.setAttribute('aria-expanded','false');
-        toggle.addEventListener('click', () => {
-          const expanded = toggle.getAttribute('aria-expanded') !== 'true';
-          renderAuthors(expanded);
-          toggle.setAttribute('aria-expanded',String(expanded));
-          toggle.textContent = expanded ? 'Show fewer' : 'Show all authors';
+      try {
+        const response = await fetch('publications.json', { cache: 'no-cache' });
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const papers = await response.json();
+        if (!Array.isArray(papers)) throw new Error('Invalid publication data');
+        papers.sort((a, b) => Number(b.year) - Number(a.year));
+        let lastYear = null;
+        papers.forEach((paper, paperIndex) => {
+          if (lastYear !== paper.year) {
+            const heading = document.createElement('h2');
+            heading.className = 'pub-year';
+            heading.textContent = paper.year;
+            container.append(heading);
+            lastYear = paper.year;
+          }
+          const article = document.createElement('article');
+          article.className = 'publication';
+          const title = document.createElement('div');
+          title.className = 'pub-title';
+          const link = document.createElement('a');
+          link.href = paper.url || (paper.doi ? 'https://doi.org/' + paper.doi : 'https://scholar.google.com/scholar?q=' + encodeURIComponent(paper.title));
+          link.textContent = paper.title;
+          link.target = '_blank'; link.rel = 'noopener noreferrer';
+          title.append(link);
+          const authors = document.createElement('div');
+          authors.className = 'pub-authors';
+          authors.id = 'pub-authors-' + paperIndex;
+          const names = Array.isArray(paper.authors) ? paper.authors : String(paper.authors || '').split(/,\s*/).filter(Boolean);
+          const groups = paper.equal_contribution || {};
+
+          // Always display all authors
+          names.forEach((name, i) => {
+            if (i > 0) {
+              authors.append(document.createTextNode(', '));
+            }
+            appendAuthor(authors, name, i, groups);
+          });
+
+          article.append(title, authors);
+          const meta = document.createElement('div');
+          meta.className = 'pub-meta';
+          const journal = document.createElement('em');
+          journal.textContent = paper.journal || '';
+          meta.append(journal, document.createTextNode(' · ' + paper.year));
+          article.append(meta);
+          // Optional representative figure: add "image" to a paper in publications.json.
+          // Papers without an image retain the full-width text layout.
+          if (paper.image && typeof paper.image === 'string') {
+            const figure = document.createElement('figure');
+            figure.className = 'pub-figure';
+            const img = document.createElement('img');
+            img.src = paper.image;
+            img.alt = paper.image_alt || ('Representative data figure for ' + paper.title);
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            figure.append(img);
+            if (paper.image_caption) {
+              const caption = document.createElement('figcaption');
+              caption.textContent = paper.image_caption;
+              figure.append(caption);
+            }
+            const text = document.createElement('div');
+            text.className = 'pub-content';
+            while (article.firstChild) text.append(article.firstChild);
+            article.append(text, figure);
+            article.classList.add('has-figure');
+          }
+          container.append(article);
         });
-        article.append(toggle);
+        status.remove();
+      } catch (error) {
+        status.textContent = 'Publications could not be loaded. Please refresh the page.';
+        console.error(error);
       }
-      const meta = document.createElement('div');
-      meta.className = 'pub-meta';
-      const journal = document.createElement('em');
-      journal.textContent = paper.journal || '';
-      meta.append(journal,document.createTextNode(' · ' + paper.year));
-      article.append(meta);
-      // Optional representative figure: add "image" to a paper in publications.json.
-      // Papers without an image retain the full-width text layout.
-      if (paper.image && typeof paper.image === 'string') {
-        const figure = document.createElement('figure');
-        figure.className = 'pub-figure';
-        const img = document.createElement('img');
-        img.src = paper.image;
-        img.alt = paper.image_alt || ('Representative data figure for ' + paper.title);
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        figure.append(img);
-        if (paper.image_caption) {
-          const caption = document.createElement('figcaption');
-          caption.textContent = paper.image_caption;
-          figure.append(caption);
-        }
-        const text = document.createElement('div');
-        text.className = 'pub-content';
-        while (article.firstChild) text.append(article.firstChild);
-        article.append(text, figure);
-        article.classList.add('has-figure');
-      }
-      container.append(article);
-    });
-    status.remove();
-  } catch(error) {
-    status.textContent = 'Publications could not be loaded. Please refresh the page.';
-    console.error(error);
-  }
-})();
-</script>
+    })();
+  </script>
 </body>
+
 </html>
