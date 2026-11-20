@@ -557,3 +557,29 @@ footer {
     text-decoration: underline;
     text-underline-offset: 3px;
 }
+
+.location-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.location-grid img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .location-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+
+    .contact-location {
+        grid-column: 1 / -1;
+    }
+}
